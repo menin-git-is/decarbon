@@ -41,16 +41,22 @@ void loop()
 {
   switch (state) {
   case 0:
-    
+  
+   testrun();
+   state= 10;  
     break;
   case 10:
+    delay(3000);
+    state= 0;
     break;
   default:
     // error, maybe turn on LED
     state=0;
   }
+}
 
-
+void testrun()
+{
   digitalWrite(dir_a, LOW);  //Set motor direction, 1 low, 2 high
   digitalWrite(dir_b, LOW);  //Set motor direction, 3 high, 4 low
   
@@ -59,7 +65,7 @@ void loop()
   analogWrite(pwm_a, 255);  //set both motors to run at 100% duty cycle (fast)
   analogWrite(pwm_b, 255);
   
-  delay(1000);
+  delay(3500);
   
   digitalWrite(dir_a, HIGH);  //Reverse motor direction, 1 high, 2 low
   digitalWrite(dir_b, HIGH);  //Reverse motor direction, 3 low, 4 high
@@ -68,7 +74,11 @@ void loop()
   
   analogWrite(pwm_a, 100);  //set both motors to run at (100/255 = 39)% duty cycle
   analogWrite(pwm_b, 100);
-  
-  delay(1000);
+    
+  delay(1000);  
+    
+  analogWrite(pwm_a, 0);  //set both motors to run at (100/255 = 39)% duty cycle
+  analogWrite(pwm_b, 0);
+    
 }
 
